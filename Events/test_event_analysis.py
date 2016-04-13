@@ -15,8 +15,13 @@ class EventTest(unittest.TestCase):
         def oracle(df):
             return df.Close > df.Open
         
-        print evt.analyse_stocks(stocks, oracle)
+        evt.analyse_stocks(stocks, oracle)
+        
+        evt.analyse_events(window=10)
 
+        changes = evt.average_change()
+
+        self.assertEqual(changes.iloc[10], 1)
 
 if __name__ == '__main__':
     unittest.main()
